@@ -1,15 +1,6 @@
 import { AxiosResponse } from "axios";
 
-export enum AuthenticationType {
-  SECRET_KEY_SIGNATURE = "SECRET_KEY_SIGNATURE",
-  TOKEN_AUTH = "TOKEN_AUTH",
-}
-
 export type WyreParams = {
-  readonly apiKey?: string;
-  readonly secretKey?: string;
-  readonly authenticationType: AuthenticationType;
-  readonly apiUrl: string;
   readonly baseUrl?: string;
   readonly url: string;
   readonly method: string;
@@ -34,7 +25,10 @@ export type WyreRequest = {
   readonly headers?: AnyObject;
 };
 
-export type WyreInstance = (config: WyreRequest, overrides?: AnyObject) => Promise<AxiosResponse>;
+export type WyreInstance = (
+  config: WyreRequest,
+  overrides?: AnyObject
+) => Promise<AxiosResponse>;
 
 export type SendWyreContextValue = {
   readonly wyre: WyreInstance;
