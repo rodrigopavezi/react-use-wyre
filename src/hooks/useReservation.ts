@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import useWyre from "./useWyre";
 
 export default function useReservation() {
-
   const { wyre, partnerId } = useWyre();
 
   const makeReservation = useCallback(
@@ -13,53 +12,58 @@ export default function useReservation() {
         sourceCurrency,
         destCurrency,
         dest,
-        user: { firstName, lastName, email, street1, city, state, country, postalCode, phone },
+        lockFields,
+        paymentMethod,
+        user: {
+          firstName,
+          lastName,
+          email,
+          street1,
+          city,
+          state,
+          country,
+          postalCode,
+          phone,
+        },
       } = opts;
-      const { data: quote } = await wyre(
-        {
-          url: "v3/orders/quote/partner",
-          method: "post",
-          data: {
-            amount,
-            sourceCurrency,
-            destCurrency,
-            dest,
-            accountId: partnerId,
-            country,
-          },
+      const { data: quote } = await wyre({
+        url: "v3/orders/quote/partner",
+        method: "post",
+        data: {
+          amount,
+          sourceCurrency,
+          destCurrency,
+          dest,
+          accountId: partnerId,
+          country,
         },
-      );
-      const { data: reserve } = await wyre(
-        {
-          url: "v3/orders/reserve",
-          method: "post",
-          data: {
-            amount,
-            sourceCurrency,
-            destCurrency,
-            dest,
-            referrerAccountId: partnerId,
-            email,
-            firstName,
-            city,
-            phone,
-            street1,
-            country,
-            // TODO: fix this
-            redirectUrl: "https://google.com",
-            failureRedirectUrl: "https://google.com",
-            paymentMethod: "apple-pay",
-            state,
-            postalCode,
-            lastName,
-            lockFields: ["amount", "sourceCurrency"],
-          },
+      });
+      const { data: reserve } = await wyre({
+        url: "v3/orders/reserve",
+        method: "post",
+        data: {
+          amount,
+          sourceCurrency,
+          destCurrency,
+          dest,
+          referrerAccountId: partnerId,
+          email,
+          firstName,
+          city,
+          phone,
+          street1,
+          country,
+          paymentMethod,
+          state,
+          postalCode,
+          lastName,
+          lockFields,
         },
-      );
+      });
       // XXX: Return the completed transaction data.
-      return Object.freeze({...opts, quote, reserve});
+      return Object.freeze({ ...opts, quote, reserve });
     },
-    [wyre, partnerId],
+    [wyre, partnerId]
   );
 
   return { makeReservation };
