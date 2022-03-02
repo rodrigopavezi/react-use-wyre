@@ -3,9 +3,8 @@ export default async function wyre({ baseUrl = "", url: endpoint, method = "get"
     if (typeof endpoint !== "string") {
         throw new Error(`Expected String url, encountered ${endpoint}.`);
     }
-    const url = `${endpoint}${endpoint.includes("?") ? "&" : "?"}timestamp=${new Date().getTime()}000`;
     const baseProps = {
-        url: `${baseUrl}${url}`,
+        url: `${baseUrl}${endpoint}`,
         method: method,
         data: JSON.stringify(data),
         headers: {
