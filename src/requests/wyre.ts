@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import {WyreParams} from '../types';
+import axios, { AxiosResponse, Method } from "axios";
+import { WyreParams } from "../types";
 
 export default async function wyre({
   baseUrl = "",
@@ -17,12 +17,12 @@ export default async function wyre({
 
   const baseProps = {
     url: `${baseUrl}${url}`,
-    method,
+    method: method as Method,
     data,
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-  return axios(baseProps) as AxiosRequestConfig;
+  return axios(baseProps);
 }
