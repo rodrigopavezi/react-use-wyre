@@ -7,7 +7,7 @@ export default async function wyre({ baseUrl = "", url: endpoint, method = "get"
     const baseProps = {
         url: `${baseUrl}${url}`,
         method: method,
-        data,
+        data: JSON.stringify(data),
         headers: {
             "Content-Type": "application/json",
         },
