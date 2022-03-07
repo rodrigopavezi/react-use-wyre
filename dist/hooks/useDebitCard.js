@@ -2,11 +2,12 @@ import { useCallback } from "react";
 import useWyre from "./useWyre";
 export default function useDebitCard() {
     const { wyre, partnerId } = useWyre();
-    const pay = useCallback(async ({ amount, sourceCurrency, destCurrency, dest, user: { firstName, lastName, email, street1, city, state, country, postalCode, phone, }, reserve: { reservation }, debitCard, }) => {
+    const pay = useCallback(async ({ ipAddress, amount, sourceCurrency, destCurrency, dest, user: { firstName, lastName, email, street1, city, state, country, postalCode, phone, }, reserve: { reservation }, debitCard, }) => {
         const { data: { id: walletOrderId }, } = await wyre({
             url: "v3/debitcard/process",
             method: "post",
             data: {
+                ipAddress,
                 sourceCurrency,
                 amount,
                 destCurrency,

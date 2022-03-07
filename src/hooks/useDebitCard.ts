@@ -12,6 +12,7 @@ export default function useDebitCard() {
   const pay = useCallback(
     async ({
       /* specified */
+      ipAddress,
       amount,
       sourceCurrency,
       destCurrency,
@@ -38,6 +39,7 @@ export default function useDebitCard() {
         url: "v3/debitcard/process",
         method: "post",
         data: {
+          ipAddress,
           sourceCurrency,
           amount,
           destCurrency,
