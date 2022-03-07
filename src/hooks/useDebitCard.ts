@@ -32,6 +32,7 @@ export default function useDebitCard() {
       reserve: {reservation},
       /* additional */
       debitCard,
+      referenceId,
     }) => {
       const {
         data: { id: walletOrderId },
@@ -39,6 +40,7 @@ export default function useDebitCard() {
         url: "v3/debitcard/process",
         method: "post",
         data: {
+          referenceId,
           ipAddress,
           sourceCurrency,
           amount,
