@@ -12,6 +12,7 @@ export default function useDebitCard() {
   const pay = useCallback(
     async ({
       /* specified */
+      trigger3ds,
       ipAddress,
       amount,
       sourceCurrency,
@@ -40,6 +41,7 @@ export default function useDebitCard() {
         url: "v3/debitcard/process",
         method: "post",
         data: {
+          trigger3ds,
           referenceId,
           ipAddress,
           sourceCurrency,
