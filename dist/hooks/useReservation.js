@@ -19,7 +19,7 @@ export default function useReservation() {
                 referenceId,
             },
         });
-        return Object.freeze({ ...opts, quote, reserve });
+        return Object.freeze({ ...opts, reserve });
     }, [wyre, partnerId]);
     return { makeReservation };
 }

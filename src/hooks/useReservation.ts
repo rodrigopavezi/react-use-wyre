@@ -45,7 +45,7 @@ export default function useReservation() {
         },
       });
       // XXX: Return the completed transaction data.
-      return Object.freeze({ ...opts, quote, reserve });
+      return Object.freeze({ ...opts, reserve });
     },
     [wyre, partnerId]
   );
