@@ -17,7 +17,7 @@ export default function useReservation() {
         referenceId,
         country,
       } = opts;
-      const { data: quote } = await wyre({
+      /*const { data: quote } = await wyre({
         url: "v3/orders/quote/partner",
         method: "post",
         data: {
@@ -28,7 +28,7 @@ export default function useReservation() {
           accountId: partnerId,
           country,
         },
-      });
+      });*/
       const { data: reserve } = await wyre({
         url: "v3/orders/reserve",
         method: "post",
