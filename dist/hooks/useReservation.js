@@ -3,7 +3,7 @@ import useWyre from "./useWyre";
 export default function useReservation() {
     const { wyre, partnerId } = useWyre();
     const makeReservation = useCallback(async ({ ...opts }) => {
-        const { amount, sourceCurrency, destCurrency, dest, lockFields, paymentMethod, user: { firstName, lastName, email, street1, city, state, country, postalCode, phone, }, } = opts;
+        const { amount, sourceCurrency, destCurrency, dest, lockFields, paymentMethod, referenceId, country, } = opts;
         const { data: quote } = await wyre({
             url: "v3/orders/quote/partner",
             method: "post",
@@ -25,17 +25,10 @@ export default function useReservation() {
                 destCurrency,
                 dest,
                 referrerAccountId: partnerId,
-                email,
-                firstName,
-                city,
-                phone,
-                street1,
-                country,
                 paymentMethod,
-                state,
-                postalCode,
-                lastName,
                 lockFields,
+                country,
+                referenceId,
             },
         });
         return Object.freeze({ ...opts, quote, reserve });
