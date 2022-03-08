@@ -5,8 +5,8 @@ export declare type AuthorizeParams = {
 export default function useDebitCard(): {
     pay: ({ trigger3ds, ipAddress, amount, sourceCurrency, destCurrency, dest, user: { firstName, lastName, email, street1, city, state, country, postalCode, phone, }, reserve: { reservation }, debitCard, referenceId, }: any) => Promise<Readonly<{
         walletOrderId: any;
-        smsNeeded: string;
-        card2faNeeded: string;
+        smsNeeded: any;
+        card2faNeeded: any;
         authorize: ({ sms, card2fa }: AuthorizeParams) => Promise<any>;
     }>>;
 };

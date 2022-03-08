@@ -31,8 +31,10 @@ export default function useDebitCard() {
                 debitCard,
             },
         });
-        const smsNeeded = "000000";
-        const card2faNeeded = "0000000";
+        const { data: { smsNeeded, card2faNeeded }, } = await wyre({
+            url: `v3/debitcard/authorization/${walletOrderId}`,
+            method: "get",
+        });
         return Object.freeze({
             walletOrderId,
             smsNeeded,
