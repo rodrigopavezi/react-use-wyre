@@ -68,8 +68,8 @@ export default function useDebitCard() {
         },
       });
 
-      // wait 2 seconds 
-      await delay(2000);
+      // wait 30 seconds 
+      await delay(30000);
 
       const {
         data: { smsNeeded, card2faNeeded, authorization3dsUrl },

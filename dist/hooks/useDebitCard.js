@@ -32,7 +32,7 @@ export default function useDebitCard() {
                 debitCard,
             },
         });
-        await delay(2000);
+        await delay(30000);
         const { data: { smsNeeded, card2faNeeded, authorization3dsUrl }, } = await wyre({
             url: `v3/debitcard/authorization/${walletOrderId}`,
             method: "get",
