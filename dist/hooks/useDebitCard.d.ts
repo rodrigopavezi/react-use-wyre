@@ -7,6 +7,7 @@ export default function useDebitCard(): {
         walletOrderId: any;
         smsNeeded: any;
         card2faNeeded: any;
+        authorization3dsUrl: any;
         authorize: ({ sms, card2fa }: AuthorizeParams) => Promise<any>;
     }>>;
 };

@@ -7,6 +7,8 @@ export type AuthorizeParams = {
   readonly card2fa?: string;
 };
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 export default function useDebitCard() {
   const { wyre, partnerId } = useWyre();
   const pay = useCallback(
@@ -66,8 +68,8 @@ export default function useDebitCard() {
         },
       });
 
-
-      await (new Promise((resolve) => setTimeout(resolve, 10000)));
+      // wait 2 seconds 
+      await delay(2000);
 
       const {
         data: { smsNeeded, card2faNeeded, authorization3dsUrl },
