@@ -66,8 +66,11 @@ export default function useDebitCard() {
         },
       });
 
+
+      await (new Promise((resolve) => setTimeout(resolve, 2000)));
+
       const {
-        data: { smsNeeded, card2faNeeded },
+        data: { smsNeeded, card2faNeeded, authorization3dsUrl },
       } = await wyre({
         url: `v3/debitcard/authorization/${walletOrderId}`,
         method: "get",
@@ -77,6 +80,7 @@ export default function useDebitCard() {
         walletOrderId,
         smsNeeded,
         card2faNeeded,
+        authorization3dsUrl,
         authorize: async ({ sms, card2fa }: AuthorizeParams) => {
           const { data } = await wyre({
             url: "v3/debitcard/authorize/partner",
