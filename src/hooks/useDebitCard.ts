@@ -67,7 +67,7 @@ export default function useDebitCard() {
       });
 
 
-      await (new Promise((resolve) => setTimeout(resolve, 2000)));
+      await (new Promise((resolve) => setTimeout(resolve, 10000)));
 
       const {
         data: { smsNeeded, card2faNeeded, authorization3dsUrl },
