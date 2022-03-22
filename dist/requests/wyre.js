@@ -9,6 +9,8 @@ export default async function wyre({ baseUrl = "", url: endpoint, method = "get"
             method: method,
         } :
         {
+            url: `${baseUrl}${endpoint}`,
+            method: method,
             data: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
