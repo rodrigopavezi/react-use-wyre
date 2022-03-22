@@ -51,7 +51,6 @@ export default function useDebitCard() {
           destCurrency,
           dest,
           reservationId: reservation,
-          accountId: partnerId,
           referrerAccountId: partnerId,
           givenName: firstName,
           familyName: lastName,
