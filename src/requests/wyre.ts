@@ -10,9 +10,12 @@ export default async function wyre({
   if (typeof endpoint !== "string") {
     throw new Error(`Expected String url, encountered ${endpoint}.`);
   }
-  const baseProps = {
+  const baseProps = method === "get" ? 
+  {
     url: `${baseUrl}${endpoint}`,
-    method: method as Method,
+     method: method as Method,} : 
+  {
+    
     data: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
